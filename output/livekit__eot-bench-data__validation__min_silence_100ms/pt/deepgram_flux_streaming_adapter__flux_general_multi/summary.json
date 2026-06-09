@@ -1,0 +1,41 @@
+{
+  "harness_version": "0.1.0",
+  "span_set_id": "04bccce31c24",
+  "model_run_id": "deepgram_flux_streaming_adapter__flux_general_multi",
+  "dataset": {
+    "path": "livekit/eot-bench-data",
+    "split": "validation",
+    "min_silence_span": 0.1,
+    "language": "pt"
+  },
+  "load_dataset": {
+    "path": "livekit/eot-bench-data",
+    "name": "all",
+    "split": "validation"
+  },
+  "model": "flux-general-multi",
+  "path": "livekit/eot-bench-data",
+  "name": "all",
+  "repo_id": "livekit/eot-bench-data",
+  "subset": "all",
+  "split": "validation",
+  "language": "pt",
+  "min_silence_span": 0.1,
+  "adapter_id": "deepgram/flux-general-multi",
+  "adapter": "eot_harness.deepgram_flux_adapter:DeepgramFluxStreamingAdapter",
+  "inference_interval": 0.1,
+  "transcript_lag": 0.5,
+  "n_rows": 9311,
+  "n_spans": 1143,
+  "display_name": "Deepgram Flux",
+  "streaming": true,
+  "chunk_ms": 100,
+  "eot_threshold": 0.7,
+  "concurrency": 32,
+  "skip_unsupported_languages": true,
+  "n_dataset_rows": 400,
+  "n_scored_turns": 400,
+  "n_skipped_turns": 0,
+  "n_event_rows": 17717,
+  "score_mode": "max"
+}

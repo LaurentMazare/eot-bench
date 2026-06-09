@@ -1,0 +1,4 @@
+# Approve native packages to run their install build scripts (pnpm blocks these by default).
+allowBuilds:
+  esbuild: true
+  '@tailwindcss/oxide': true

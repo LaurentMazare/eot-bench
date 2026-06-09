@@ -1,0 +1,119 @@
+@import 'tailwindcss';
+
+/* Register the LiveKit design tokens the vendored components reference as Tailwind
+   color utilities (text-fg1, bg-bg1, border-separator1, fill-fg2, accent-accent, …).
+   Each maps to an --lk-color-* triple defined below, which switches with the theme. */
+@theme {
+  --color-fg0: oklch(var(--lk-color-fg0));
+  --color-fg1: oklch(var(--lk-color-fg1));
+  --color-fg2: oklch(var(--lk-color-fg2));
+  --color-fg3: oklch(var(--lk-color-fg3));
+  --color-fg4: oklch(var(--lk-color-fg4));
+  --color-bg0: oklch(var(--lk-color-bg0));
+  --color-bg1: oklch(var(--lk-color-bg1));
+  --color-bg2: oklch(var(--lk-color-bg2));
+  --color-bg3: oklch(var(--lk-color-bg3));
+  --color-separator1: oklch(var(--lk-color-separator1));
+  --color-separator2: oklch(var(--lk-color-separator2));
+  --color-accent: oklch(var(--lk-color-accent));
+  --color-chart1: oklch(var(--lk-color-chart1));
+  --color-chart2: oklch(var(--lk-color-chart2));
+  --color-chart3: oklch(var(--lk-color-chart3));
+  --color-chart4: oklch(var(--lk-color-chart4));
+  --color-chart5: oklch(var(--lk-color-chart5));
+  --color-chart6: oklch(var(--lk-color-chart6));
+  --color-chart7: oklch(var(--lk-color-chart7));
+  --color-chart8: oklch(var(--lk-color-chart8));
+  --color-chartSuccess: oklch(var(--lk-color-chartSuccess));
+  --color-chartModerate: oklch(var(--lk-color-chartModerate));
+}
+
+/* Light theme tokens (default). Resolved triples vendored from
+   @repo/bytes-core gen/tailwind/tailwind-colors.css. */
+:root {
+  --lk-color-fg0: 0 0 0;
+  --lk-color-fg1: 0.352 0 0;
+  --lk-color-fg2: 0.42 0 0;
+  --lk-color-fg3: 0.5 0 0;
+  --lk-color-fg4: 0.545 0 0;
+  --lk-color-bg0: 1 0 0;
+  --lk-color-bg1: 0.994 0.001 105.51;
+  --lk-color-bg2: 0.951 0.004 106.18;
+  --lk-color-bg3: 0.912 0.004 106.2;
+  --lk-color-separator1: 0.891 0.004 106.21;
+  --lk-color-separator2: 0.798 0.003 106.11;
+  --lk-color-accent: 0.462 0.283 264.17;
+  --lk-color-chart1: 0.462 0.283 264.17;
+  --lk-color-chart2: 0.606 0.288 312.36;
+  --lk-color-chart3: 0.715 0.18 49.51;
+  --lk-color-chart4: 0.754 0.188 315.57;
+  --lk-color-chart5: 0.612 0.162 151.75;
+  --lk-color-chart6: 0.806 0.139 216.34;
+  --lk-color-chart7: 0.825 0.173 102.92;
+  --lk-color-chart8: 0.661 0.213 29.95;
+  --lk-color-chartSuccess: 0.493 0.128 152.53;
+  --lk-color-chartModerate: 0.511 0.128 52.64;
+}
+
+/* Dark theme tokens — applied by OS preference, or by forcing .dark on <html>. */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --lk-color-fg0: 1 0 0;
+    --lk-color-fg1: 0.845 0 0;
+    --lk-color-fg2: 0.764 0 0;
+    --lk-color-fg3: 0.683 0 0;
+    --lk-color-fg4: 0.51 0 0;
+    --lk-color-bg0: 0 0 0;
+    --lk-color-bg1: 0.129 0 0;
+    --lk-color-bg2: 0.187 0 0;
+    --lk-color-bg3: 0.239 0 0;
+    --lk-color-separator1: 0.244 0 0;
+    --lk-color-separator2: 0.309 0.002 106.29;
+    --lk-color-accent: 0.806 0.139 216.34;
+    --lk-color-chart1: 0.806 0.139 216.34;
+    --lk-color-chart2: 0.606 0.288 312.36;
+    --lk-color-chart3: 0.715 0.18 49.51;
+    --lk-color-chart4: 0.754 0.188 315.57;
+    --lk-color-chart5: 0.612 0.162 151.75;
+    --lk-color-chart6: 0.552 0.236 267.73;
+    --lk-color-chart7: 0.914 0.188 103.59;
+    --lk-color-chart8: 0.661 0.213 29.95;
+    --lk-color-chartSuccess: 0.685 0.163 154.55;
+    --lk-color-chartModerate: 0.829 0.142 72.57;
+  }
+}
+
+:root.dark {
+  --lk-color-fg0: 1 0 0;
+  --lk-color-fg1: 0.845 0 0;
+  --lk-color-fg2: 0.764 0 0;
+  --lk-color-fg3: 0.683 0 0;
+  --lk-color-fg4: 0.51 0 0;
+  --lk-color-bg0: 0 0 0;
+  --lk-color-bg1: 0.129 0 0;
+  --lk-color-bg2: 0.187 0 0;
+  --lk-color-bg3: 0.239 0 0;
+  --lk-color-separator1: 0.244 0 0;
+  --lk-color-separator2: 0.309 0.002 106.29;
+  --lk-color-accent: 0.806 0.139 216.34;
+  --lk-color-chart1: 0.806 0.139 216.34;
+  --lk-color-chart2: 0.606 0.288 312.36;
+  --lk-color-chart3: 0.715 0.18 49.51;
+  --lk-color-chart4: 0.754 0.188 315.57;
+  --lk-color-chart5: 0.612 0.162 151.75;
+  --lk-color-chart6: 0.552 0.236 267.73;
+  --lk-color-chart7: 0.914 0.188 103.59;
+  --lk-color-chart8: 0.661 0.213 29.95;
+  --lk-color-chartSuccess: 0.685 0.163 154.55;
+  --lk-color-chartModerate: 0.829 0.142 72.57;
+}
+
+html,
+body {
+  margin: 0;
+  background-color: oklch(var(--lk-color-bg0));
+  color: oklch(var(--lk-color-fg1));
+  font-family:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

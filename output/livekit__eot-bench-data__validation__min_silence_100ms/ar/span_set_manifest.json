@@ -1,0 +1,11 @@
+{
+  "harness_version": "0.1.0",
+  "span_set_id": "c32e856118cc",
+  "dataset": {
+    "path": "livekit/eot-bench-data",
+    "split": "validation",
+    "min_silence_span": 0.1,
+    "language": "ar"
+  },
+  "n_spans": 1084
+}

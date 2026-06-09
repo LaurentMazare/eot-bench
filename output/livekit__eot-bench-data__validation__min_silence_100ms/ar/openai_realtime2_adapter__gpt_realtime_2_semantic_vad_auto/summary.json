@@ -1,0 +1,46 @@
+{
+  "harness_version": "0.1.0",
+  "span_set_id": "c32e856118cc",
+  "model_run_id": "openai_realtime2_adapter__gpt_realtime_2_semantic_vad_auto",
+  "dataset": {
+    "path": "livekit/eot-bench-data",
+    "split": "validation",
+    "min_silence_span": 0.1,
+    "language": "ar"
+  },
+  "load_dataset": {
+    "path": "livekit/eot-bench-data",
+    "name": "all",
+    "split": "validation"
+  },
+  "path": "livekit/eot-bench-data",
+  "name": "all",
+  "repo_id": "livekit/eot-bench-data",
+  "subset": "all",
+  "split": "validation",
+  "language": "ar",
+  "min_silence_span": 0.1,
+  "adapter_id": "openai/gpt-realtime-2/semantic_vad_auto",
+  "adapter": "eot_harness.openai_realtime_adapter:OpenAIRealtime2Adapter",
+  "streaming": true,
+  "inference_interval": 0.1,
+  "concurrency": 24,
+  "n_dataset_rows": 381,
+  "n_scored_turns": 381,
+  "n_skipped_turns": 0,
+  "n_rows": 8546,
+  "n_spans": 1084,
+  "n_event_rows": 470,
+  "total_audio_sec": 4524.858624999997,
+  "wall_clock_sec": 4176.501644958,
+  "audio_x_realtime": 1.0834087975189821,
+  "skip_errors": false,
+  "model": "gpt-realtime-2",
+  "chunk_ms": 100,
+  "eagerness": "auto",
+  "post_audio_wait_s": 5.0,
+  "display_name": "OpenAI GPT Realtime 2",
+  "skipped_languages": {
+    "en": "existing_predictions"
+  }
+}
