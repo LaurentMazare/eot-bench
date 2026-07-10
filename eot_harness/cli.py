@@ -77,7 +77,7 @@ def build_parser() -> argparse.ArgumentParser:
     predict_streaming.add_argument("--concurrency", type=int)
     predict_streaming.add_argument("--model", help="Optional adapter model override")
     predict_streaming.add_argument("--chunk-ms", type=int, help="Optional streaming chunk size override")
-    predict_streaming.add_argument("--eot-threshold", type=float, help="Optional Deepgram Flux EoT threshold override")
+    predict_streaming.add_argument("--eot-threshold", type=float, help="Optional EoT threshold override (Deepgram Flux, Gradium)")
     predict_streaming.add_argument("--limit", type=int, help="Only score the first N dataset rows.")
     predict_streaming.add_argument("--overwrite", action="store_true", help="Overwrite existing model run directories")
     predict_streaming.add_argument(
@@ -649,7 +649,7 @@ def _streaming_model_run_artifact_can_be_reused(
 
 def _run_predict(args) -> list[Path]:
     progress_interval = _progress_interval(args)
-    token = os.getenv("HF_TOKEN")
+    token = str(os.getenv("HF_TOKEN") or "").strip() or None
     load_config = _load_dataset_config(args)
     if progress_interval is not None:
         revision = f" revision={load_config['revision']}" if load_config.get("revision") is not None else ""
@@ -844,7 +844,7 @@ async def _run_predict_streaming_async(args) -> list[Path]:
     if concurrency <= 0:
         raise ValueError("concurrency must be positive")
 
-    token = os.getenv("HF_TOKEN")
+    token = str(os.getenv("HF_TOKEN") or "").strip() or None
     load_config = _load_dataset_config(args)
     if progress_interval is not None:
         revision = f" revision={load_config['revision']}" if load_config.get("revision") is not None else ""

@@ -833,7 +833,7 @@ wheels = [
 ]
 
 [[package]]
-name = "eot-eval-harness"
+name = "eot-bench"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
