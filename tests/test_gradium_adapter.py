@@ -15,12 +15,13 @@ def _step_msg(inactivity_prob: float) -> dict:
         "vad": [
             {"inactivity_prob": 0.01},
             {"inactivity_prob": 0.02},
+            {"inactivity_prob": 0.03},
             {"inactivity_prob": inactivity_prob},
         ],
     }
 
 
-def test_gradium_vad_event_uses_third_vad_entry():
+def test_gradium_vad_event_uses_fourth_vad_entry():
     event = _gradium_vad_event(_step_msg(0.83), step_index=5)
 
     assert event == {
@@ -35,8 +36,8 @@ def test_gradium_vad_event_uses_third_vad_entry():
 def test_gradium_vad_event_returns_none_on_malformed_payloads():
     assert _gradium_vad_event({"type": "step"}, step_index=1) is None
     assert _gradium_vad_event({"type": "step", "vad": []}, step_index=1) is None
-    assert _gradium_vad_event({"type": "step", "vad": [{}, {}]}, step_index=1) is None
     assert _gradium_vad_event({"type": "step", "vad": [{}, {}, {}]}, step_index=1) is None
+    assert _gradium_vad_event({"type": "step", "vad": [{}, {}, {}, {}]}, step_index=1) is None
 
 
 def test_gradium_defaults_and_key(monkeypatch):
