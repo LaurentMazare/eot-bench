@@ -21,7 +21,7 @@ SAMPLE_RATE = 24000
 # Gradium streaming STT emits one VAD `step` message per 80ms of processed audio.
 VAD_STEP_S = 0.08
 DEFAULT_CHUNK_MS = 80
-VAD_INACTIVITY_INDEX = 2
+VAD_INACTIVITY_INDEX = 3
 # Languages the Gradium ASR worker accepts in json_config; other benchmark
 # languages run without a language hint rather than erroring the session.
 GRADIUM_LANGUAGES = frozenset({"en", "fr", "de", "es", "pt"})
