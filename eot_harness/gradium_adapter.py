@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import asyncio
 import json
-import os
 from typing import Any
 
 from .io import DEFAULT_INFERENCE_INTERVAL
@@ -54,7 +53,7 @@ class GradiumStreamingAdapter:
         self.chunk_ms = int(chunk_ms)
         self.eot_threshold = float(eot_threshold)
         self.concurrency = int(concurrency)
-        self.url = str(url or os.getenv("GRADIUM_API_URL") or DEFAULT_GRADIUM_URL)
+        self.url = str(url or DEFAULT_GRADIUM_URL)
 
     @property
     def adapter_id(self) -> str:

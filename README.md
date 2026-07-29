@@ -625,7 +625,7 @@ gradium`) and records the VAD inactivity probability
 probability-valued `p_eot` score. The recommended end-of-turn condition is
 `inactivity_prob > 0.5`, which corresponds to the `0.5` threshold operating
 point in the harness metrics. It requires `GRADIUM_API_KEY` and targets
-`https://api.gradium.ai/api` by default; set `GRADIUM_API_URL` to override.
+`https://api.gradium.ai/api` by default.
 
 `LiveKitTurnDetectorAdapter` is a streaming adapter that scores each turn
 with the LiveKit Turn Detector v1 (`turn-detector-v1`) cloud model over the

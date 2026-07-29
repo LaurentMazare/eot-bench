@@ -40,7 +40,6 @@ def test_gradium_vad_event_returns_none_on_malformed_payloads():
 
 
 def test_gradium_defaults_and_key(monkeypatch):
-    monkeypatch.delenv("GRADIUM_API_URL", raising=False)
     monkeypatch.setenv("GRADIUM_API_KEY", "gradium-test-key")
     adapter = GradiumStreamingAdapter()
 
@@ -56,9 +55,7 @@ def test_gradium_defaults_and_key(monkeypatch):
     assert resolve_api_key("GRADIUM_API_KEY") == "gradium-test-key"
 
 
-def test_gradium_url_overrides(monkeypatch):
-    monkeypatch.setenv("GRADIUM_API_URL", "https://dev.gradium.ai/api")
-    assert GradiumStreamingAdapter().url == "https://dev.gradium.ai/api"
+def test_gradium_url_override():
     assert GradiumStreamingAdapter(url="http://localhost:8080/api").url == "http://localhost:8080/api"
 
 
