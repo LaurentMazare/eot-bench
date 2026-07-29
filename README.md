@@ -621,7 +621,7 @@ The AssemblyAI adapter defaults to `universal-streaming-multilingual` with
 `GradiumStreamingAdapter` streams 24kHz PCM turns through the Gradium
 `stt_streaming` API (`gradium` PyPI package, imported lazily; `pip install
 gradium`) and records the VAD inactivity probability
-(`msg["vad"][2]["inactivity_prob"]`) from each 80ms `step` message as a
+(`msg["vad"][3]["inactivity_prob"]`) from each 80ms `step` message as a
 probability-valued `p_eot` score. The recommended end-of-turn condition is
 `inactivity_prob > 0.5`, which corresponds to the `0.5` threshold operating
 point in the harness metrics. It requires `GRADIUM_API_KEY` and targets
