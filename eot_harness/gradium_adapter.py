@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import os
 from typing import Any
 
 from .io import DEFAULT_INFERENCE_INTERVAL
-from .languages import supports_any_benchmark_language
+from .languages import row_language, supports_any_benchmark_language
 from .streaming_stt import (
     build_event_prediction_rows,
     chunk_size_bytes,
@@ -22,6 +23,9 @@ SAMPLE_RATE = 24000
 VAD_STEP_S = 0.08
 DEFAULT_CHUNK_MS = 80
 VAD_INACTIVITY_INDEX = 2
+# Languages the Gradium ASR worker accepts in json_config; other benchmark
+# languages run without a language hint rather than erroring the session.
+GRADIUM_LANGUAGES = frozenset({"en", "fr", "de", "es", "pt"})
 
 
 class GradiumStreamingAdapter:
@@ -79,7 +83,7 @@ class GradiumStreamingAdapter:
         timeout = 60.0 + 2.0 * total_audio_sec
         try:
             await asyncio.wait_for(
-                self._collect_events(client, audio_gen(), events),
+                self._collect_events(client, audio_gen(), events, language=row_language(row)),
                 timeout=timeout,
             )
         except asyncio.TimeoutError as exc:
@@ -99,11 +103,15 @@ class GradiumStreamingAdapter:
             ),
         }
 
-    async def _collect_events(self, client, audio_gen, events: list[dict[str, Any]]) -> None:
+    async def _collect_events(
+        self, client, audio_gen, events: list[dict[str, Any]], *, language: str | None = None
+    ) -> None:
         setup = {
             "model_name": self.model,
             "input_format": "pcm",
         }
+        if language in GRADIUM_LANGUAGES:
+            setup["json_config"] = json.dumps({"language": language})
         stream = await client.stt_stream(setup, audio_gen)
         step_index = 0
         # iter_text only surfaces transcripts; read the raw stream for VAD steps.

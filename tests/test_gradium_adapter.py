@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 
 import pytest
 
@@ -116,6 +117,34 @@ def test_gradium_collect_events_maps_steps_to_80ms_grid():
     assert [event["timestamp"] for event in events] == [0.08, 0.16, 0.32]
     assert [event["p_eot"] for event in events] == [0.1, 0.2, 0.9]
     assert [event["step_index"] for event in events] == [1, 2, 4]
+
+
+@pytest.mark.parametrize("language", ["en", "fr", "pt", "es", "de"])
+def test_gradium_collect_events_sets_language_json_config(language):
+    adapter = GradiumStreamingAdapter()
+    client = _FakeGradiumClient([_step_msg(0.1)])
+
+    async def audio_gen():
+        yield b"\x00\x00"
+
+    events: list[dict] = []
+    asyncio.run(adapter._collect_events(client, audio_gen(), events, language=language))
+
+    assert json.loads(client.setup["json_config"]) == {"language": language}
+
+
+@pytest.mark.parametrize("language", [None, "ja", "it"])
+def test_gradium_collect_events_omits_unsupported_language(language):
+    adapter = GradiumStreamingAdapter()
+    client = _FakeGradiumClient([_step_msg(0.1)])
+
+    async def audio_gen():
+        yield b"\x00\x00"
+
+    events: list[dict] = []
+    asyncio.run(adapter._collect_events(client, audio_gen(), events, language=language))
+
+    assert "json_config" not in client.setup
 
 
 def test_gradium_events_feed_prediction_rows():
