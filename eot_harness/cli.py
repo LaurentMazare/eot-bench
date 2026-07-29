@@ -649,7 +649,7 @@ def _streaming_model_run_artifact_can_be_reused(
 
 def _run_predict(args) -> list[Path]:
     progress_interval = _progress_interval(args)
-    token = str(os.getenv("HF_TOKEN") or "").strip() or None
+    token = os.getenv("HF_TOKEN")
     load_config = _load_dataset_config(args)
     if progress_interval is not None:
         revision = f" revision={load_config['revision']}" if load_config.get("revision") is not None else ""
@@ -844,7 +844,7 @@ async def _run_predict_streaming_async(args) -> list[Path]:
     if concurrency <= 0:
         raise ValueError("concurrency must be positive")
 
-    token = str(os.getenv("HF_TOKEN") or "").strip() or None
+    token = os.getenv("HF_TOKEN")
     load_config = _load_dataset_config(args)
     if progress_interval is not None:
         revision = f" revision={load_config['revision']}" if load_config.get("revision") is not None else ""
